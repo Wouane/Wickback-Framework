@@ -4,7 +4,7 @@ body{
 
 table {
     border-collapse: collapse;
-    width:600px;
+    width:800px;
     margin:20px auto;
     border-radius:10px;
 }
@@ -30,4 +30,20 @@ td {
 tr:nth-child(even) {
 	background: #ECF0F1;
 	border-radius: 5px;
+}
+
+h2{ 
+    margin:20px;
+    text-align: center;
+    font-family: 'Open-sans', sans-serif;
+    font-weight: bolder;
+}
+
+form{
+    border:1px solid #ccc;
+    border-radius: 5px;
+    width:400px;
+    text-align: center;
+    margin: 15px auto;
+    padding:10px;
 }
