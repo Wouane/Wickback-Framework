@@ -4,7 +4,7 @@ body{
 
 table {
     border-collapse: collapse;
-    width:800px;
+    width:1000px;
     margin:20px auto;
     border-radius:10px;
 }
@@ -20,6 +20,13 @@ th{
     font-weight: bolder;
 }
 
+a.erase {
+    color:black;
+}
+
+a.edit {
+    color:black;
+}
 
 td {
     padding:10px;
@@ -27,9 +34,19 @@ td {
     text-align: center;
 }
 
+tr:hover{
+    background-color:#BDC3C7;
+    color:white;
+}
+
+tr:nth-child(even):hover{
+    background-color:#BDC3C7;
+    color:white;
+}
+
 tr:nth-child(even) {
-	background: #ECF0F1;
-	border-radius: 5px;
+    background: #ECF0F1;
+    border-radius: 5px;
 }
 
 h2{ 
@@ -47,3 +64,9 @@ form{
     margin: 15px auto;
     padding:10px;
 }
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
