@@ -4,9 +4,9 @@
 	<h1>Tous les termes.</h1>
 
 	<header>
-		
-		
+		<a href="<?= $this->url('change_wotd') ?>" title="Modifier le mot du jour actuel">Nouveau Mot du Jour</a>
 	</header>
+
 
 	
 	<table border="1px solid">
