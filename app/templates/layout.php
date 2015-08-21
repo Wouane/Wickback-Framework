@@ -12,7 +12,13 @@
 <body>
 	<div class="container">
 		<header>
+			
+		<?php if ($w_user): ?>
 			<h1>W :: <?= $this->e($title) ?></h1>
+			<p>Bonjour <?= $w_user['username']; ?></p>
+			<a href="<?= $this->url('logout'); ?>" title="Déconnexion">Déconnexion</a>
+		<?php endif; ?>
+
 					
 		</header>
 
