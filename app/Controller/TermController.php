@@ -13,7 +13,9 @@ class TermController extends Controller
 	 */
 	public function showAll()
 	{   
+		$this->allowTo('admin');
 		$termManager = new \Manager\TermManager();
+
 		$terms = $termManager->findAll("modifiedDate", "DESC");
 
 		// debug($terms);
@@ -28,7 +30,9 @@ class TermController extends Controller
 	 */
 	public function delete($id)
 	{   
+		$this->allowTo('admin');
 		$termManager = new\Manager\TermManager();
+
 		// $deleteTerms = $termManager->delete($id);
 		$termManager->delete($id);
 		$this->redirectToRoute('show_all_terms');
@@ -37,7 +41,10 @@ class TermController extends Controller
 
 	public function edit($id)
 	{   
+		$this->allowTo('admin');
 		$termManager = new \Manager\TermManager();
+
+		$user = $this->getUser(); // retourne l'utilisateur connecté
 
 		if (!empty($_POST)){
 
@@ -68,7 +75,8 @@ class TermController extends Controller
 
 
 	public function changeWotd($id)
-	{
+	{	
+		$this->allowTo('admin');
 		$termManager = new \Manager\TermManager();
 		// debug($wotd);
 
