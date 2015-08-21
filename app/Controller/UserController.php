@@ -17,19 +17,21 @@ class UserController extends Controller
 
 
 		//formulaire d'inscription soumis ?
-		if(!empty($_POST)){
+		if(!empty($_POST))
+		{
 			//ninja shit ?
 
 			foreach($_POST as $key => $value){
 				//créer une variable $username, $email, $password, etc...
 				$$key = trim(strip_tags($value));
 			}
-
 			// //La boucle foreach revient à écrire v
 			// $username    	 = trim(strip_tags($_POST['username'])); 
 			// $email 			 = trim(strip_tags($_POST['email'])); 
 			// $password 		 = trim(strip_tags($_POST['password']));
 			// $password_confirm = trim(strip_tags($_POST['password_confirm']));
+
+
 
 			/*Validadation*/
 			//-----------------------------------------------------
@@ -38,10 +40,21 @@ class UserController extends Controller
 				$error = "Votre pseudo est trop court";
 			}
 			//-----------------------------------------------------
+			//pseudo déjà présent dans la bdd ?
+			if($usernameManager->usernameExists($username)){
+				$error= "Pseudo déjà utilisé !";
+			}
+			//-----------------------------------------------------
+			//email déjà présent dans la bdd ?
+			if($userManager->emailExists($email)){
+				$error = "Email déjà existant !";
+			}
+			//-----------------------------------------------------
 			//email valide
 			elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 				$error = "Email non valide";
 			}
+
 			//-----------------------------------------------------
 			//mot de passe correspondent?
 			if ($password != $password_confirm){
@@ -55,11 +68,11 @@ class UserController extends Controller
 				$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 				$newAdmin = [
-					"username" => $username,
-					"email" => $email,
-					"password" => $hashedPassword,
-					"role" => "admin",
-					"dateCreated" => date("Y-m-d H:i:s"),
+					"username" 	   => $username,
+					"email" 	   => $email,
+					"password" 	   => $hashedPassword,
+					"role" 		   => "admin",
+					"dateCreated"  => date("Y-m-d H:i:s"),
 					"dateModified" => date("Y-m-d H:i:s")
 				];
 
@@ -69,21 +82,33 @@ class UserController extends Controller
 				
 			}
 		}	
-		
-
-
-			//afficher bravo ou rediriger ou faire quelque chose de bien
-
-			// si invalide..
-
-			//envoyer les erreurs et les données soumises à la vue
-
-				$dataToPassToTheView = [
-					"username" => $username,
-					"email" => $email,
-					"error" => $error
-				];
+		//afficher bravo ou rediriger ou faire quelque chose de bien
+		// si invalide..
+		//envoyer les erreurs et les données soumises à la vue
+		$dataToPassToTheView = [
+			"username" => $username,
+			"email" => $email,
+			"error" => $error
+		];
 
 		$this->show('user/register_administrator', $dataToPassToTheView);
+		}
+
+
+	public function login($usernameOrEmail)
+	{
+		$userManager = new UserManager($username, $email);
+		$this->getUserByUsernameOrEmail();
+
+
+
 	}
+
+
+
+
+
+
+
+
 }
